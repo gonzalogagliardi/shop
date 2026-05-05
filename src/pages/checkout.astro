@@ -1,0 +1,351 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header     from '../components/Header.astro';
+import Footer     from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Completar pedido — NovaShop"
+  description="Completá tus datos de envío para confirmar tu pedido."
+>
+  <Header />
+
+  <main class="pt-[104px] bg-gray-50 min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+
+      <!-- Breadcrumb -->
+      <div class="mb-10">
+        <p class="font-body text-gray-400 text-sm mb-3">
+          <a href="/" class="hover:text-gray-600 transition-colors">Inicio</a>
+          <span class="mx-2">/</span>
+          Completar pedido
+        </p>
+        <h1 class="font-heading font-extrabold text-gray-900 text-3xl sm:text-4xl tracking-tight">Completar pedido</h1>
+      </div>
+
+      <div class="grid lg:grid-cols-[1fr_360px] gap-10 items-start">
+
+        <!-- ── Left column ── -->
+        <div>
+          <form id="checkout-form" class="space-y-6" novalidate>
+            <input type="hidden" id="field-product" name="Producto" value="" />
+
+            <!-- Contact section -->
+            <div class="bg-white rounded-xl border border-gray-200">
+              <div class="px-8 py-5 border-b border-gray-100">
+                <h2 class="font-heading font-bold text-gray-900 text-lg">Datos de contacto</h2>
+              </div>
+              <div class="px-8 py-7 grid sm:grid-cols-2 gap-5">
+
+                <div class="sm:col-span-2">
+                  <label for="nombre" class="block font-body font-semibold text-gray-700 text-sm mb-2">
+                    Nombre completo <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text" id="nombre" name="Nombre" required
+                    placeholder="Juan García"
+                    class="w-full font-body text-gray-900 text-sm border border-gray-300 rounded-lg px-4 py-3 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-nova-600 focus:border-nova-600 transition-shadow"
+                  />
+                </div>
+
+                <div>
+                  <label for="email" class="block font-body font-semibold text-gray-700 text-sm mb-2">Email</label>
+                  <input
+                    type="email" id="email" name="Email"
+                    placeholder="juan@email.com"
+                    class="w-full font-body text-gray-900 text-sm border border-gray-300 rounded-lg px-4 py-3 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-nova-600 focus:border-nova-600 transition-shadow"
+                  />
+                </div>
+
+                <div>
+                  <label for="telefono" class="block font-body font-semibold text-gray-700 text-sm mb-2">Teléfono</label>
+                  <input
+                    type="tel" id="telefono" name="Teléfono"
+                    placeholder="+54 9 11 1234-5678"
+                    class="w-full font-body text-gray-900 text-sm border border-gray-300 rounded-lg px-4 py-3 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-nova-600 focus:border-nova-600 transition-shadow"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="notas" class="block font-body font-semibold text-gray-700 text-sm mb-2">
+                    Notas <span class="font-normal text-gray-400">(opcional)</span>
+                  </label>
+                  <textarea
+                    id="notas" name="Notas" rows="2"
+                    placeholder="Indicaciones especiales para el pedido..."
+                    class="w-full font-body text-gray-900 text-sm border border-gray-300 rounded-lg px-4 py-3 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-nova-600 focus:border-nova-600 transition-shadow resize-none"
+                  ></textarea>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Address section -->
+            <div class="bg-white rounded-xl border border-gray-200">
+              <div class="px-8 py-5 border-b border-gray-100">
+                <h2 class="font-heading font-bold text-gray-900 text-lg">Dirección de envío</h2>
+              </div>
+              <div class="px-8 py-7 grid sm:grid-cols-2 gap-5">
+
+                <div class="sm:col-span-2">
+                  <label for="calle" class="block font-body font-semibold text-gray-700 text-sm mb-2">
+                    Calle <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text" id="calle" name="Calle" required
+                    placeholder="Av. Corrientes"
+                    class="w-full font-body text-gray-900 text-sm border border-gray-300 rounded-lg px-4 py-3 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-nova-600 focus:border-nova-600 transition-shadow"
+                  />
+                </div>
+
+                <div>
+                  <label for="numero" class="block font-body font-semibold text-gray-700 text-sm mb-2">Número</label>
+                  <input
+                    type="text" id="numero" name="Número"
+                    placeholder="1234"
+                    class="w-full font-body text-gray-900 text-sm border border-gray-300 rounded-lg px-4 py-3 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-nova-600 focus:border-nova-600 transition-shadow"
+                  />
+                </div>
+
+                <div>
+                  <label for="piso" class="block font-body font-semibold text-gray-700 text-sm mb-2">Piso</label>
+                  <input
+                    type="text" id="piso" name="Piso"
+                    placeholder="3"
+                    class="w-full font-body text-gray-900 text-sm border border-gray-300 rounded-lg px-4 py-3 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-nova-600 focus:border-nova-600 transition-shadow"
+                  />
+                </div>
+
+                <div>
+                  <label for="depto" class="block font-body font-semibold text-gray-700 text-sm mb-2">Departamento</label>
+                  <input
+                    type="text" id="depto" name="Departamento"
+                    placeholder="B"
+                    class="w-full font-body text-gray-900 text-sm border border-gray-300 rounded-lg px-4 py-3 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-nova-600 focus:border-nova-600 transition-shadow"
+                  />
+                </div>
+
+                <div>
+                  <label for="ciudad" class="block font-body font-semibold text-gray-700 text-sm mb-2">
+                    Ciudad <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text" id="ciudad" name="Ciudad" required
+                    placeholder="Buenos Aires"
+                    class="w-full font-body text-gray-900 text-sm border border-gray-300 rounded-lg px-4 py-3 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-nova-600 focus:border-nova-600 transition-shadow"
+                  />
+                </div>
+
+                <div>
+                  <label for="provincia" class="block font-body font-semibold text-gray-700 text-sm mb-2">Provincia</label>
+                  <input
+                    type="text" id="provincia" name="Provincia"
+                    placeholder="Buenos Aires"
+                    class="w-full font-body text-gray-900 text-sm border border-gray-300 rounded-lg px-4 py-3 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-nova-600 focus:border-nova-600 transition-shadow"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="cp" class="block font-body font-semibold text-gray-700 text-sm mb-2">
+                    Código postal <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text" id="cp" name="Código postal" required
+                    placeholder="1414"
+                    class="w-full sm:w-44 font-body text-gray-900 text-sm border border-gray-300 rounded-lg px-4 py-3 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-nova-600 focus:border-nova-600 transition-shadow"
+                  />
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Error -->
+            <div id="form-error" class="hidden bg-red-50 border border-red-200 text-red-700 font-body text-sm px-4 py-3 rounded-lg"></div>
+
+            <!-- CTA -->
+            <button
+              id="submit-btn"
+              type="submit"
+              class="btn-shimmer relative overflow-hidden w-full flex items-center justify-center gap-3 bg-gradient-to-br from-nova-600 to-nova-700 hover:from-nova-500 hover:to-nova-600 text-white font-body font-extrabold text-lg py-5 rounded-none transition-all duration-200 hover:shadow-xl hover:shadow-nova-700/30 hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              <span id="btn-idle" class="flex items-center gap-3">
+                Ir a pagar con MercadoPago
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </span>
+              <span id="btn-loading" class="hidden flex items-center gap-3">
+                <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                </svg>
+                Preparando pago...
+              </span>
+            </button>
+
+            <p class="font-body text-gray-400 text-xs text-center">
+              Serás redirigido a MercadoPago para completar el pago de forma segura.
+              Tus datos de pago nunca pasan por nuestro servidor.
+            </p>
+
+          </form>
+        </div>
+
+        <!-- ── Summary sidebar ── -->
+        <div class="space-y-4 lg:sticky lg:top-24">
+
+          <!-- Product card -->
+          <div class="bg-white rounded-xl border border-gray-200">
+            <div class="px-6 py-4 border-b border-gray-100">
+              <h2 class="font-heading font-bold text-gray-900 text-base">Resumen del pedido</h2>
+            </div>
+            <div class="px-6 py-5">
+              <div class="flex gap-4 items-start mb-5">
+                <img
+                  id="product-image"
+                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=160&q=80"
+                  alt="Producto"
+                  class="w-20 h-20 object-cover rounded-lg flex-shrink-0 bg-gray-100"
+                />
+                <div class="flex-1 min-w-0 pt-0.5">
+                  <p id="product-label" class="font-body text-gray-400 text-[11px] uppercase tracking-wide mb-0.5">Producto</p>
+                  <p id="product-name" class="font-heading font-bold text-gray-900 text-sm leading-snug mb-2">Cepillo quitapelos reutilizable</p>
+                  <div class="flex items-center gap-2">
+                    <span id="product-price" class="font-heading font-extrabold text-gray-900 text-xl leading-none">$19.990</span>
+                    <span id="product-original" class="font-body text-gray-400 text-sm line-through">$34.990</span>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-2.5 border-t border-gray-100 pt-4">
+                <div class="flex justify-between">
+                  <span class="font-body text-gray-500 text-sm">Subtotal</span>
+                  <span id="summary-sub" class="font-body font-semibold text-gray-900 text-sm">$19.990</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="font-body text-gray-500 text-sm">Envío</span>
+                  <span class="font-body font-semibold text-green-600 text-sm">A coordinar</span>
+                </div>
+                <div class="flex justify-between border-t border-gray-100 pt-3 mt-1">
+                  <span class="font-body font-bold text-gray-900 text-sm">Total</span>
+                  <span id="summary-total" class="font-heading font-extrabold text-gray-900 text-xl leading-none">$19.990</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trust strip -->
+          <div class="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
+            {[
+              { label: 'Pago seguro en MercadoPago', detail: 'Checkout Pro · Certificado PCI DSS', icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>` },
+              { label: 'Envío a todo el país', detail: '3 a 7 días hábiles · con seguimiento', icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>` },
+              { label: 'Garantía de satisfacción', detail: '30 días · devolución sin preguntas', icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>` },
+            ].map(item => (
+              <div class="flex items-start gap-4 px-5 py-4">
+                <span class="text-nova-600 flex-shrink-0 mt-0.5" set:html={item.icon} />
+                <div>
+                  <p class="font-body font-semibold text-gray-900 text-sm leading-tight">{item.label}</p>
+                  <p class="font-body text-gray-400 text-xs mt-0.5">{item.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  const PRODUCTS: Record<string, { name: string; label: string; price: string; original: string; image: string }> = {
+    cepillo: {
+      name:     'Cepillo quitapelos reutilizable',
+      label:    'Quitapelos',
+      price:    '$19.990',
+      original: '$34.990',
+      image:    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=160&q=80',
+    },
+    juguete: {
+      name:     'Juguete interactivo para mascotas',
+      label:    'Entretenimiento',
+      price:    '$24.990',
+      original: '$44.990',
+      image:    'https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=160&q=80',
+    },
+  };
+
+  const params  = new URLSearchParams(window.location.search);
+  const key     = params.get('p') || 'cepillo';
+  const product = PRODUCTS[key] ?? PRODUCTS.cepillo;
+
+  // Populate sidebar
+  (document.getElementById('field-product') as HTMLInputElement).value = product.name;
+  const img = document.getElementById('product-image') as HTMLImageElement;
+  img.src = product.image;
+  img.alt = product.name;
+  document.getElementById('product-label')!.textContent    = product.label;
+  document.getElementById('product-name')!.textContent     = product.name;
+  document.getElementById('product-price')!.textContent    = product.price;
+  document.getElementById('product-original')!.textContent = product.original;
+  document.getElementById('summary-sub')!.textContent      = product.price;
+  document.getElementById('summary-total')!.textContent    = product.price;
+
+  const form       = document.getElementById('checkout-form') as HTMLFormElement;
+  const submitBtn  = document.getElementById('submit-btn') as HTMLButtonElement;
+  const btnIdle    = document.getElementById('btn-idle')!;
+  const btnLoading = document.getElementById('btn-loading')!;
+  const formError  = document.getElementById('form-error')!;
+
+  function setLoading(on: boolean) {
+    submitBtn.disabled = on;
+    btnIdle.classList.toggle('hidden', on);
+    btnLoading.classList.toggle('hidden', !on);
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formError.classList.add('hidden');
+
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    setLoading(true);
+
+    const fd       = new FormData(form);
+    const data     = Object.fromEntries(fd.entries());
+    const nombre   = (data['Nombre']         as string) ?? '';
+    const email    = (data['Email']          as string) ?? '';
+    const telefono = (data['Teléfono']       as string) ?? '';
+    const calle    = (data['Calle']          as string) ?? '';
+    const ciudad   = (data['Ciudad']         as string) ?? '';
+    const provincia= (data['Provincia']      as string) ?? '';
+    const cp       = (data['Código postal']  as string) ?? '';
+
+    try {
+      // Notificación al dueño (fire-and-forget)
+      fetch('https://formsubmit.co/ajax/gagliardigonzalo@gmail.com', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body:    JSON.stringify({ _subject: 'Nuevo pedido — NovaShop', _template: 'table', _captcha: 'false', ...data, Producto: product.name }),
+      }).catch(() => {});
+
+      const res = await fetch('/api/preference', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ product: key, nombre, email, telefono, calle, ciudad, provincia, cp }),
+      });
+
+      const { init_point, error, detail } = await res.json();
+      if (!res.ok || !init_point) throw new Error(detail ?? error ?? 'Error al crear la preferencia');
+
+      window.location.href = init_point;
+
+    } catch (err) {
+      setLoading(false);
+      formError.textContent = err instanceof Error ? err.message : 'Ocurrió un error. Intentá de nuevo.';
+      formError.classList.remove('hidden');
+      formError.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+</script>

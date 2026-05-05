@@ -1,0 +1,500 @@
+---
+import BaseLayout      from '../layouts/BaseLayout.astro';
+import Header          from '../components/Header.astro';
+import Footer          from '../components/Footer.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+
+const WA_URL = 'https://wa.me/5491112345678?text=Hola!%20Quiero%20comprar%20el%20juguete%20para%20mascotas';
+
+const benefits = [
+  { icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>`, text: 'Estimula la curiosidad y el instinto natural de caza' },
+  { icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>`, text: 'Reduce la ansiedad y el estrés de perros y gatos' },
+  { icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`, text: 'Mantiene activa a tu mascota durante horas' },
+  { icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>`, text: 'Material seguro, sin BPA ni componentes tóxicos' },
+  { icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" /></svg>`, text: 'Apto para razas pequeñas, medianas y grandes' },
+];
+
+const steps = [
+  { n: '01', title: 'Activá el juguete', desc: 'Colocá las pilas o cargalo. ¡Listo para divertir en segundos!' },
+  { n: '02', title: 'Presentalo a tu mascota', desc: 'Poné el juguete en el suelo y dejá que el instinto haga el resto.' },
+  { n: '03', title: 'Disfrutá verla jugar', desc: 'Tu mascota estará entretenida y vos podés relajarte tranquilo.' },
+];
+
+const testimonials = [
+  {
+    name:     'Valentina P.',
+    location: 'Buenos Aires',
+    rating:   5,
+    text:     'Mi labrador enloquece con este juguete. Antes destrozaba todo de aburrimiento; ahora está ocupado y feliz por horas. ¡Un cambio total!',
+    product:  'Juguete para mascotas',
+  },
+  {
+    name:     'Martín A.',
+    location: 'Tucumán',
+    rating:   5,
+    text:     'Mi gata es muy selectiva con los juguetes y este la enganchó desde el primer día. Calidad increíble para el precio, vale cada peso.',
+    product:  'Juguete para mascotas',
+  },
+  {
+    name:     'Romina C.',
+    location: 'Córdoba',
+    rating:   5,
+    text:     'El veterinario me recomendó estimulación mental para mi perro ansioso. Este juguete fue la solución perfecta. Llegó rapidísimo y muy bien embalado.',
+    product:  'Juguete para mascotas',
+  },
+];
+---
+
+<BaseLayout
+  title="Juguete Interactivo para Mascotas — NovaShop"
+  description="Entretené a tu perro o gato por horas. Reduce la ansiedad y estimula el instinto natural. Envío a todo el país con garantía."
+>
+  <Header />
+
+  <main class="pt-[104px]">
+
+    <!-- ─── Hero / Buy Section ─── -->
+    <section class="lg:flex lg:min-h-[calc(100vh-104px)]">
+
+      <!-- Left: full-bleed product image -->
+      <div class="relative h-72 sm:h-96 lg:h-auto lg:w-[52%] lg:flex-shrink-0 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=900&q=80"
+          alt="Juguete interactivo para mascotas"
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-white/5"></div>
+
+        <!-- Rating badge -->
+        <div class="absolute top-5 right-5 bg-white/95 backdrop-blur-sm rounded px-3 py-2 shadow-lg flex items-center gap-1.5">
+          <div class="flex gap-0.5">
+            {[1,2,3,4,5].map(() => (
+              <svg class="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+          <span class="font-heading font-bold text-gray-900 text-xs">4.9 · 150+ reseñas</span>
+        </div>
+
+        <!-- Recent purchase toast -->
+        <div class="absolute bottom-5 left-5 bg-white/95 backdrop-blur-sm rounded px-4 py-3 shadow-lg flex items-center gap-3">
+          <div class="relative flex-shrink-0">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+              <span class="font-heading font-bold text-white text-xs">V</span>
+            </div>
+            <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+              <svg class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </span>
+          </div>
+          <div>
+            <p class="font-body font-semibold text-gray-900 text-xs leading-tight">Valentina M. — Bs. As.</p>
+            <p class="font-body text-gray-500 text-xs">Compra verificada · hace 47 min</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: buy panel -->
+      <div class="flex-1 bg-white flex items-center">
+        <div class="w-full max-w-lg mx-auto px-6 py-10 lg:px-10 lg:py-16">
+
+          <span class="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-700 font-body font-bold text-xs px-3 py-1.5 rounded mb-6 uppercase tracking-wide">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" /></svg>
+            Ideal para perros y gatos
+          </span>
+
+          <h1 class="font-heading font-extrabold text-gray-900 text-4xl xl:text-5xl leading-tight tracking-tight mb-3">
+            Juguete interactivo<br />para mascotas
+          </h1>
+
+          <p class="font-body text-nova-700 font-semibold text-lg mb-3">
+            Horas de entretenimiento garantizadas ✓
+          </p>
+
+          <p class="font-body text-gray-500 leading-relaxed mb-8 text-[15px]">
+            Diseñado para estimular el instinto natural de tu mascota, reducir la ansiedad y mantenerla activa. Perfecta para perros y gatos de todas las razas y tamaños.
+          </p>
+
+          <!-- ── Buy Box ── -->
+          <div class="bg-gray-50 rounded-lg border border-gray-200 p-6 mb-5">
+
+            <!-- Price -->
+            <div class="flex items-start justify-between mb-5 pb-5 border-b border-gray-200">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-body text-gray-400 line-through text-sm">$44.990</span>
+                  <span class="bg-red-600 text-white font-body font-bold text-xs px-2.5 py-1 rounded">Ahorrás $20.000</span>
+                </div>
+                <p class="font-heading font-extrabold text-5xl text-gray-900 leading-none">$24.990</p>
+              </div>
+              <div class="flex-shrink-0 mt-1 text-right">
+                <p class="font-body font-bold text-orange-600 text-xs mb-1.5">8 disponibles</p>
+                <div class="w-24 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                  <div class="h-full bg-orange-500 rounded-full" style="width: 16%"></div>
+                </div>
+                <p class="font-body text-orange-400 text-[10px] mt-1">Agotándose rápido</p>
+              </div>
+            </div>
+
+            <!-- Urgency strip -->
+            <div class="flex items-center justify-center gap-2 bg-amber-50 border border-amber-200 rounded px-3 py-2 mb-4">
+              <svg class="w-4 h-4 text-amber-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+              </svg>
+              <p class="font-body text-amber-800 text-xs font-semibold">Precio especial · Válido solo hoy</p>
+            </div>
+
+            <!-- Primary CTA -->
+            <a
+              href="/checkout?p=juguete"
+              
+              class="btn-shimmer relative overflow-hidden flex items-center justify-center gap-3 w-full bg-gradient-to-br from-nova-600 to-nova-700 hover:from-nova-500 hover:to-nova-600 active:scale-[0.98] text-white font-body font-extrabold text-xl py-5 rounded-none transition-all duration-200 hover:shadow-xl hover:shadow-nova-700/35 hover:-translate-y-0.5 mb-3"
+            >
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+              </svg>
+              Comprar ahora
+            </a>
+
+            <!-- Secondary WhatsApp -->
+            <a
+              href={WA_URL}
+              target="_blank"
+              rel="noopener"
+              class="flex items-center justify-center gap-2 w-full bg-green-500 hover:bg-green-600 active:scale-[0.98] text-white font-body font-bold text-base py-3.5 rounded-none transition-all duration-200 mb-4"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.524 5.843L.057 23.9l6.194-1.443A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.893 0-3.667-.5-5.204-1.378l-.374-.222-3.868.9.937-3.768-.245-.392A9.967 9.967 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+              </svg>
+              Consultar por WhatsApp
+            </a>
+
+            <!-- Live viewers -->
+            <div class="flex items-center justify-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0"></span>
+              <span class="font-body text-gray-600 text-xs">7 personas en esta página ahora mismo</span>
+            </div>
+          </div>
+
+          <!-- Trust strip -->
+          <div class="grid grid-cols-3 divide-x divide-gray-100 border border-gray-100 rounded overflow-hidden mt-4">
+            {[
+              { label: 'Envío nacional', detail: '3-7 días hábiles', icon: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>` },
+              { label: 'Hasta 12 cuotas', detail: 'MercadoPago', icon: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>` },
+              { label: 'Garantía 30 días', detail: 'devolución total', icon: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>` },
+            ].map(b => (
+              <div class="flex flex-col items-center gap-1 text-center px-2 py-3 bg-gray-50">
+                <span class="text-nova-600 mb-0.5" set:html={b.icon} />
+                <p class="font-body font-semibold text-gray-800 text-[11px] leading-tight">{b.label}</p>
+                <p class="font-body text-gray-400 text-[10px] leading-tight">{b.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Problem → Solution ─── -->
+    <section class="py-20 bg-white">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading font-extrabold text-gray-900 text-4xl lg:text-5xl text-center mb-12 tracking-tight">¿Tu mascota sufre de aburrimiento?</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <div class="bg-red-50 rounded-2xl p-8 border border-red-100">
+            <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-heading font-bold text-gray-900 text-2xl mb-5">Señales de aburrimiento</h3>
+            <ul class="space-y-3.5">
+              {[
+                'Destruye objetos de la casa cuando está solo',
+                'Ladra o maúlla sin parar por ansiedad',
+                'Está sedentario y sin energía',
+                'Se muerde la cola o las patas',
+              ].map(item => (
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  <span class="font-body text-gray-700 text-sm leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="bg-amber-50 rounded-2xl p-8 border border-amber-100">
+            <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-heading font-bold text-gray-900 text-2xl mb-5">Con el juguete interactivo</h3>
+            <ul class="space-y-3.5">
+              {[
+                'Se mantiene activo y estimulado mentalmente',
+                'Reduce la ansiedad de forma natural',
+                'Entretiene por horas sin que tengas que intervenir',
+                'Refuerza su bienestar emocional y físico',
+              ].map(item => (
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span class="font-body text-gray-700 text-sm leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── How it works ─── -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+          <h2 class="font-heading font-extrabold text-gray-900 text-4xl lg:text-5xl mb-3 tracking-tight">Empezar es muy simple</h2>
+          <p class="font-body text-gray-500 text-lg">Tu mascota lo va a amar desde el primer segundo.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-14">
+          {steps.map((s, i) => (
+            <div class="relative text-center">
+              {i < steps.length - 1 && (
+                <div class="hidden md:block absolute top-8 left-[calc(50%+2rem)] right-0 h-px bg-gradient-to-r from-nova-200 to-transparent"></div>
+              )}
+              <div class="w-16 h-16 bg-nova-700 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-nova-700/25">
+                <span class="font-heading font-extrabold text-white text-lg">{s.n}</span>
+              </div>
+              <h3 class="font-heading font-bold text-gray-900 text-xl mb-2">{s.title}</h3>
+              <p class="font-body text-gray-500 text-sm leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5">
+          <img
+            src="https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?auto=format&fit=crop&w=1200&q=80"
+            alt="Mascota jugando con el juguete interactivo"
+            class="w-full h-72 object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Benefits ─── -->
+    <section class="py-20 bg-white">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+          <div class="rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5 order-2 md:order-1">
+            <img
+              src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=700&q=80"
+              alt="Mascota feliz"
+              class="w-full h-96 object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="order-1 md:order-2">
+            <h2 class="font-heading font-extrabold text-gray-900 text-4xl lg:text-5xl mb-8 tracking-tight">Diseñado para el bienestar real</h2>
+            <ul class="space-y-5">
+              {benefits.map(b => (
+                <li class="flex items-start gap-4">
+                  <div class="w-10 h-10 bg-amber-50 border border-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 text-amber-600">
+                    <span set:html={b.icon} />
+                  </div>
+                  <span class="font-body text-gray-700 leading-relaxed mt-2">{b.text}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="mt-10">
+              <a
+                href="/checkout?p=juguete"
+                
+                class="inline-flex items-center gap-2 bg-nova-700 hover:bg-nova-800 active:scale-[0.97] text-white font-body font-extrabold text-base px-8 py-5 rounded-none transition-all duration-200 hover:shadow-xl hover:shadow-nova-700/30 hover:-translate-y-0.5"
+              >
+                Lo quiero — $24.990
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Social Proof ─── -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="font-heading font-extrabold text-gray-900 text-4xl mb-5 tracking-tight">Mascotas felices, dueños felices</h2>
+          <div class="inline-flex items-center gap-3 bg-white border border-gray-100 shadow-sm rounded-full px-6 py-3">
+            <div class="flex gap-0.5">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <span class="font-heading font-extrabold text-gray-900 text-lg">4.9 / 5</span>
+            <span class="w-px h-4 bg-gray-200"></span>
+            <span class="font-body text-sm text-gray-500">+150 compras verificadas</span>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          {testimonials.map(t => <TestimonialCard {...t} />)}
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Guarantee + Shipping ─── -->
+    <section class="py-20 bg-white">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-green-50 rounded-2xl p-8 border border-green-100">
+            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+            </div>
+            <h3 class="font-heading font-bold text-gray-900 text-2xl mb-3">Garantía de satisfacción</h3>
+            <p class="font-body text-gray-600 text-sm leading-relaxed mb-5">Si el juguete no entretiene a tu mascota en los primeros 30 días, te devolvemos el dinero. Sin preguntas.</p>
+            <span class="inline-flex items-center gap-2 bg-green-100 text-green-800 font-body font-bold text-sm px-4 py-2 rounded-full">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              30 días de garantía total
+            </span>
+          </div>
+
+          <div class="bg-nova-50 rounded-2xl p-8 border border-nova-100">
+            <div class="w-12 h-12 bg-nova-100 rounded-xl flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-nova-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+              </svg>
+            </div>
+            <h3 class="font-heading font-bold text-gray-900 text-2xl mb-3">Envío a todo el país</h3>
+            <p class="font-body text-gray-600 text-sm leading-relaxed mb-5">Entrega en 3 a 7 días hábiles a todas las provincias. Recibís el número de seguimiento por email.</p>
+            <span class="inline-flex items-center gap-2 bg-nova-100 text-nova-800 font-body font-bold text-sm px-4 py-2 rounded-full">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>
+              Envíos a todo Argentina
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Final CTA ─── -->
+    <section class="py-24 bg-gray-950 relative overflow-hidden">
+      <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-nova-600/40 to-transparent"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+          <!-- Left: copy + CTA -->
+          <div>
+            <p class="font-body font-bold text-nova-400 text-xs uppercase tracking-[0.15em] mb-4">Última oportunidad</p>
+            <h2 class="font-heading font-extrabold text-white text-4xl sm:text-5xl mb-6 tracking-tight leading-[1.1]">
+              Probalo 30 días.<br/>Si no te gusta,<br/>te devolvemos todo.
+            </h2>
+            <p class="font-body text-gray-400 text-lg mb-8 leading-relaxed">Sin preguntas, sin formularios. Garantía total incluida en la compra.</p>
+
+            <!-- Price -->
+            <div class="flex items-baseline gap-3 mb-8">
+              <span class="font-heading font-extrabold text-white text-5xl leading-none">$24.990</span>
+              <span class="font-body text-gray-600 text-xl line-through">$44.990</span>
+              <span class="bg-red-600 text-white font-body font-bold text-xs px-2 py-1 rounded">-44%</span>
+            </div>
+
+            <!-- CTA button -->
+            <a
+              href="/checkout?p=juguete"
+              class="inline-flex items-center justify-center gap-3 bg-nova-700 hover:bg-nova-600 active:scale-[0.97] text-white font-body font-extrabold text-xl px-10 py-5 rounded-none transition-all duration-200 hover:shadow-xl hover:shadow-nova-700/30 w-full sm:w-auto mb-6"
+            >
+              Comprar ahora
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+
+            <!-- Payment trust row -->
+            <div class="flex flex-wrap gap-x-6 gap-y-2">
+              {[
+                { icon: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>`, text: 'MercadoPago seguro' },
+                { icon: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>`, text: 'Hasta 12 cuotas' },
+                { icon: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>`, text: 'Envío a todo el país' },
+              ].map(t => (
+                <div class="flex items-center gap-1.5 text-gray-500 text-sm">
+                  <span class="text-gray-600" set:html={t.icon} />
+                  <span class="font-body">{t.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Right: guarantee card -->
+          <div class="bg-gray-900 border border-gray-800 p-8 rounded-lg">
+            <div class="w-14 h-14 bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-6 rounded-sm">
+              <svg class="w-7 h-7 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+            </div>
+            <h3 class="font-heading font-extrabold text-white text-2xl mb-3">Garantía de 30 días</h3>
+            <p class="font-body text-gray-400 text-sm leading-relaxed mb-6">
+              Si el producto no cumple tus expectativas por cualquier motivo, te devolvemos el 100% del dinero. Sin formularios complicados, sin esperar semanas.
+            </p>
+            <ul class="space-y-3">
+              {[
+                'Devolución sin preguntas',
+                'Reembolso en menos de 48 hs',
+                'Sin costo de envío de vuelta',
+              ].map(item => (
+                <li class="flex items-center gap-2.5">
+                  <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  <span class="font-body text-gray-300 text-sm">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+
+  <!-- ─── Sticky CTA (mobile only) ─── -->
+  <div
+    id="sticky-cta"
+    class="fixed bottom-0 inset-x-0 z-40 md:hidden bg-white border-t border-gray-200 px-4 py-3.5 shadow-2xl translate-y-full transition-transform duration-300"
+    style="padding-bottom: max(0.875rem, env(safe-area-inset-bottom));"
+  >
+    <div class="flex items-center gap-3">
+      <div class="flex-1 min-w-0">
+        <p class="font-body text-gray-500 text-xs">Juguete para mascotas</p>
+        <p class="font-heading font-extrabold text-nova-700 text-xl leading-tight">$24.990</p>
+      </div>
+      <a
+        href="/checkout?p=juguete"
+        
+        class="flex-shrink-0 bg-nova-700 active:bg-nova-800 text-white font-body font-extrabold text-sm px-6 py-3.5 rounded-none"
+      >
+        Comprar ahora
+      </a>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const stickyCta = document.getElementById('sticky-cta');
+  window.addEventListener('scroll', () => {
+    stickyCta?.classList.toggle('translate-y-full', window.scrollY < 500);
+  }, { passive: true });
+</script>

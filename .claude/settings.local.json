@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/)",
+      "Bash(sed -i '/checkout?p=cepillo/{n;/target=\"_blank\"/{N;s/\\\\n.*rel=\"noopener\"//;s/target=\"_blank\"//}}' \"C:\\\\Users\\\\gagli\\\\Desktop\\\\e-tienda\\\\src\\\\pages\\\\cepillo.astro\")",
+      "Bash(sed -i '/checkout?p=juguete/{n;/target=\"_blank\"/{N;s/\\\\n.*rel=\"noopener\"//;s/target=\"_blank\"//}}' \"C:\\\\Users\\\\gagli\\\\Desktop\\\\e-tienda\\\\src\\\\pages\\\\juguete.astro\")",
+      "Bash(cat)",
+      "Read(//tmp/**)",
+      "Bash(python3 -c ' *)",
+      "Bash(powershell *)",
+      "Skill(update-config)",
+      "Bash(node -e \"require\\('mercadopago'\\); console.log\\('ok'\\)\")",
+      "Bash(node -e \"require\\('./node_modules/@astrojs/netlify/package.json'\\); console.log\\('netlify ok'\\)\")",
+      "Bash(node -e \"const pkg = require\\('./node_modules/@mercadopago/sdk-js/package.json'\\); console.log\\(pkg.version, pkg.main, pkg.module, pkg.exports\\)\")",
+      "Bash(claude mcp *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

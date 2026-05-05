@@ -1,0 +1,21 @@
+{
+  "name": "novashop",
+  "description": "NovaShop — E-commerce Astro + TailwindCSS",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/netlify": "^5.5.4",
+    "@astrojs/tailwind": "^5.1.3",
+    "@mercadopago/sdk-js": "^0.0.3",
+    "@supabase/supabase-js": "^2.105.3",
+    "astro": "^4.15.9",
+    "mercadopago": "^2.12.0",
+    "tailwindcss": "^3.4.10"
+  }
+}

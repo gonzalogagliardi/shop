@@ -1,0 +1,56 @@
+---
+interface Props {
+  href:       string;
+  text:       string;
+  variant?:   'primary' | 'secondary' | 'outline' | 'whatsapp';
+  size?:      'sm' | 'md' | 'lg';
+  fullWidth?: boolean;
+  icon?:      boolean;
+  external?:  boolean;
+}
+
+const {
+  href,
+  text,
+  variant   = 'primary',
+  size      = 'md',
+  fullWidth = false,
+  icon      = true,
+  external  = false,
+} = Astro.props;
+
+const base = 'inline-flex items-center justify-center gap-2 font-body font-bold rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-[0.97]';
+
+const variants: Record<string, string> = {
+  primary:   'btn-shimmer relative overflow-hidden bg-gradient-to-br from-nova-600 to-nova-700 hover:from-nova-500 hover:to-nova-600 text-white shadow-md shadow-nova-700/20 focus:ring-nova-600 hover:shadow-xl hover:shadow-nova-700/35 hover:-translate-y-px',
+  secondary: 'bg-white border-2 border-nova-700 text-nova-700 hover:bg-nova-50 focus:ring-nova-600 hover:-translate-y-px',
+  outline:   'bg-transparent border border-gray-300 text-gray-800 hover:bg-gray-50 hover:border-gray-400 focus:ring-gray-300',
+  whatsapp:  'btn-shimmer relative overflow-hidden bg-green-500 hover:bg-green-600 text-white focus:ring-green-500 hover:shadow-lg hover:shadow-green-500/30 hover:-translate-y-px',
+};
+
+const sizes: Record<string, string> = {
+  sm: 'text-sm px-4 py-2.5',
+  md: 'text-sm px-6 py-3.5',
+  lg: 'text-base px-8 py-5',
+};
+
+const cls = [base, variants[variant], sizes[size], fullWidth ? 'w-full' : ''].join(' ');
+---
+
+<a
+  href={href}
+  class={cls}
+  {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+>
+  {variant === 'whatsapp' && (
+    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.524 5.843L.057 23.9l6.194-1.443A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.893 0-3.667-.5-5.204-1.378l-.374-.222-3.868.9.937-3.768-.245-.392A9.967 9.967 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+    </svg>
+  )}
+  {text}
+  {icon && variant !== 'whatsapp' && (
+    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+    </svg>
+  )}
+</a>

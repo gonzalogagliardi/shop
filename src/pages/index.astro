@@ -1,0 +1,357 @@
+---
+import BaseLayout       from '../layouts/BaseLayout.astro';
+import Header           from '../components/Header.astro';
+import Footer           from '../components/Footer.astro';
+import ProductCard      from '../components/ProductCard.astro';
+import TestimonialCard  from '../components/TestimonialCard.astro';
+
+const products = [
+  {
+    image:         'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80',
+    imageAlt:      'Cepillo quitapelos reutilizable',
+    name:          'Cepillo quitapelos reutilizable',
+    price:         '$19.990',
+    originalPrice: '$34.990',
+    description:   'Eliminá pelos de mascotas de ropa y muebles en segundos. Sin rollos descartables, cero desperdicio.',
+    href:          '/cepillo',
+    badge:         'Más vendido',
+    reviewCount:   200,
+  },
+  {
+    image:         'https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=800&q=80',
+    imageAlt:      'Juguete interactivo para mascotas',
+    name:          'Juguete interactivo para mascotas',
+    price:         '$24.990',
+    originalPrice: '$44.990',
+    description:   'Entretiene a tu mascota por horas. Reduce la ansiedad y estimula su curiosidad natural.',
+    href:          '/juguete',
+    badge:         'Nuevo',
+    reviewCount:   150,
+  },
+];
+
+const benefits = [
+  {
+    title: 'Envíos a todo el país',
+    desc:  'Enviamos a todas las provincias. Entrega estimada de 3 a 7 días hábiles por Correo Argentino o MercadoEnvíos.',
+    icon:  `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" class="w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>`,
+  },
+  {
+    title: 'Pago 100% seguro',
+    desc:  'Procesamos tus pagos con MercadoPago. Cuotas disponibles. Tu información siempre cifrada y protegida.',
+    icon:  `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" class="w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>`,
+  },
+  {
+    title: 'Garantía de satisfacción',
+    desc:  'Si no quedás conforme en los primeros 30 días, te devolvemos el dinero. Sin preguntas, sin vueltas.',
+    icon:  `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" class="w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" /></svg>`,
+  },
+];
+
+const testimonials = [
+  {
+    name:     'María G.',
+    location: 'Buenos Aires',
+    rating:   5,
+    text:     'El cepillo quitapelos es increíble, lo uso todos los días para el pelo de mi golden retriever. La ropa queda como nueva. 100% recomendable.',
+    product:  'Cepillo quitapelos',
+  },
+  {
+    name:     'Carlos R.',
+    location: 'Córdoba',
+    rating:   5,
+    text:     'Llegó súper rápido y bien empaquetado. El juguete para mi gata es lo mejor que compré en mucho tiempo. Muy buena calidad.',
+    product:  'Juguete para mascotas',
+  },
+  {
+    name:     'Sofía M.',
+    location: 'Rosario',
+    rating:   5,
+    text:     'Excelente atención al cliente y producto de muy buena calidad. Ya hice mi segunda compra. Los recomiendo con los ojos cerrados.',
+    product:  'Cepillo quitapelos',
+  },
+];
+---
+
+<BaseLayout>
+  <Header />
+
+  <main>
+
+    <!-- ─── Hero ─── -->
+    <section class="pt-[104px] overflow-hidden">
+      <div class="flex flex-col lg:h-[calc(100vh-104px)] lg:grid lg:grid-cols-2">
+
+        <!-- ── Left: copy ── -->
+        <div class="bg-gray-950 relative overflow-hidden flex items-center justify-center lg:justify-end order-2 lg:order-1">
+          <!-- ambient glow -->
+          <div class="absolute top-0 left-0 w-[700px] h-[700px] bg-nova-700/[0.12] rounded-full blur-[160px] pointer-events-none -translate-x-1/2 -translate-y-1/4"></div>
+
+          <div class="relative w-full max-w-xl px-8 sm:px-12 lg:pl-16 xl:pl-20 lg:pr-14 xl:pr-16 py-16 lg:py-0 anim-fade-up">
+
+            <!-- Eyebrow -->
+            <div class="inline-flex items-center gap-2 border border-white/10 bg-white/5 text-gray-300 font-body text-xs px-4 py-2 rounded-full mb-8 tracking-wide">
+              <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
+              Envíos a todo el país · Garantía 30 días
+            </div>
+
+            <!-- Headline -->
+            <h1 class="font-heading font-extrabold text-white text-5xl sm:text-6xl xl:text-7xl leading-[1.04] tracking-tight mb-6">
+              Todo lo que<br/>tu mascota
+              <span class="block text-transparent bg-clip-text bg-gradient-to-r from-nova-300 to-nova-500">necesita</span>
+            </h1>
+
+            <p class="font-body text-gray-400 text-lg leading-relaxed mb-10">
+              Productos seleccionados, envío rápido y pago 100&nbsp;% seguro con MercadoPago.
+            </p>
+
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row gap-3 mb-12">
+              <a href="/cepillo" class="inline-flex items-center justify-center gap-2 bg-nova-700 hover:bg-nova-800 active:scale-[0.97] text-white font-body font-bold text-base px-7 py-4 rounded-none transition-all duration-200 hover:shadow-xl hover:shadow-nova-700/30 hover:-translate-y-0.5">
+                Cepillo — $19.990
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+              </a>
+              <a href="/juguete" class="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-white font-body font-bold text-base px-7 py-4 rounded-none transition-all duration-200 hover:-translate-y-0.5">
+                Juguete — $24.990
+              </a>
+            </div>
+
+            <!-- Social proof -->
+            <div class="flex items-center gap-5 flex-wrap">
+              <div class="flex items-center gap-3">
+                <div class="flex -space-x-2">
+                  {['M', 'C', 'S', 'L', 'R'].map((letter, i) => (
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-nova-500 to-nova-800 border-2 border-gray-950 flex items-center justify-center" style={`z-index: ${5 - i}`}>
+                      <span class="font-heading font-bold text-white text-[10px]">{letter}</span>
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <div class="flex gap-0.5 mb-0.5">
+                    {[1,2,3,4,5].map(() => (
+                      <svg class="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    ))}
+                  </div>
+                  <p class="font-body text-gray-400 text-xs"><span class="text-white font-semibold">+500 clientes</span> satisfechos</p>
+                </div>
+              </div>
+              <div class="w-px h-8 bg-white/10"></div>
+              {[{ value: '4.9', label: 'Calificación' }, { value: '30d', label: 'Garantía' }].map(s => (
+                <div>
+                  <p class="font-heading font-extrabold text-white text-lg leading-none">{s.value}</p>
+                  <p class="font-body text-gray-500 text-xs mt-0.5">{s.label}</p>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── Right: image (full bleed) ── -->
+        <div class="relative h-64 sm:h-80 lg:h-auto order-1 lg:order-2">
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85"
+            alt="Cepillo quitapelos reutilizable"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+          />
+          <!-- overlay oscuro sutil -->
+          <div class="absolute inset-0 bg-gray-950/20"></div>
+          <!-- mobile bottom fade to dark copy section -->
+          <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-gray-950 to-transparent lg:hidden"></div>
+          <!-- desktop blend edge izquierda -->
+          <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-gray-950 to-transparent hidden lg:block"></div>
+
+          <!-- Badge: Más vendido (desktop only) -->
+          <div class="absolute top-8 left-10 bg-amber-400 text-gray-900 font-body font-bold text-xs px-3.5 py-1.5 rounded shadow-lg hidden lg:block">
+            Más vendido
+          </div>
+
+          <!-- Card: precio (desktop only) -->
+          <div class="absolute bottom-10 left-8 bg-white rounded p-4 shadow-2xl shadow-black/50 min-w-[148px] hidden lg:block">
+            <p class="font-body text-gray-400 text-[10px] uppercase tracking-widest mb-1">Precio especial</p>
+            <p class="font-heading font-extrabold text-gray-900 text-2xl leading-none">$19.990</p>
+            <p class="font-body text-gray-400 text-xs line-through mt-1">$34.990</p>
+          </div>
+
+          <!-- Card: rating (desktop only) -->
+          <div class="absolute top-8 right-8 bg-gray-950/80 backdrop-blur-sm border border-white/10 rounded px-4 py-3 shadow-xl hidden lg:block">
+            <div class="flex gap-0.5 mb-1">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              ))}
+            </div>
+            <p class="font-heading font-bold text-white text-sm leading-none">4.9 / 5</p>
+            <p class="font-body text-gray-400 text-[10px] mt-0.5">+200 reseñas</p>
+          </div>
+
+          <!-- Pill: envío gratis (desktop only) -->
+          <div class="absolute bottom-10 right-8 bg-gray-950/80 backdrop-blur-sm border border-white/10 rounded px-4 py-2.5 shadow-xl flex items-center gap-2 hidden lg:flex">
+            <svg class="w-3.5 h-3.5 text-green-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+            <span class="font-body text-white text-xs font-semibold">Envío gratis</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── Featured Products ─── -->
+    <section class="py-24 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+          <span class="font-body font-bold text-nova-700 text-xs uppercase tracking-[0.15em]">Nuestros productos</span>
+          <h2 class="font-heading font-extrabold text-gray-900 text-4xl lg:text-5xl mt-3 mb-4 tracking-tight">Lo que más se vende</h2>
+          <p class="font-body text-gray-500 text-lg max-w-xl mx-auto leading-relaxed">Productos pensados para tu comodidad y la de tu mascota.</p>
+          <div class="inline-flex items-center gap-2 bg-orange-50 border border-orange-200 text-orange-700 font-body font-semibold text-xs px-4 py-2 rounded mt-5">
+            <span class="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
+            Stock limitado · Precios especiales por tiempo limitado
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {products.map(p => <ProductCard {...p} />)}
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Benefits ─── -->
+    <section class="py-24 bg-gray-950">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span class="font-body font-bold text-nova-400 text-xs uppercase tracking-[0.15em]">Por qué elegirnos</span>
+          <h2 class="font-heading font-extrabold text-white text-4xl lg:text-5xl mt-3 mb-0 tracking-tight">Comprás con total confianza</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          {benefits.map(b => (
+            <div class="group p-8 rounded-lg bg-gray-900 border border-gray-800 hover:border-nova-500/50 hover:bg-gray-800 transition-all duration-300">
+              <div class="w-14 h-14 rounded-sm bg-nova-600/20 border border-nova-500/30 flex items-center justify-center mb-6 text-nova-200 group-hover:bg-nova-600/30 group-hover:border-nova-500/50 transition-all duration-300">
+                <span set:html={b.icon} />
+              </div>
+              <h3 class="font-heading font-bold text-white text-xl mb-3">{b.title}</h3>
+              <p class="font-body text-gray-300 text-sm leading-relaxed">{b.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Testimonials ─── -->
+    <section class="py-24 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Header + aggregate rating -->
+        <div class="text-center mb-14">
+          <span class="font-body font-bold text-nova-700 text-xs uppercase tracking-[0.15em]">Opiniones reales</span>
+          <h2 class="font-heading font-extrabold text-gray-900 text-4xl lg:text-5xl mt-3 mb-5 tracking-tight">Nuestros clientes opinan</h2>
+
+          <!-- Aggregate rating pill -->
+          <div class="inline-flex items-center gap-3 bg-white border border-gray-100 shadow-sm rounded-full px-6 py-3">
+            <div class="flex gap-0.5">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <span class="font-heading font-extrabold text-gray-900 text-lg leading-none">4.9</span>
+            <span class="w-px h-4 bg-gray-200"></span>
+            <span class="font-body text-gray-500 text-sm">+500 compras verificadas</span>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          {testimonials.map(t => <TestimonialCard {...t} />)}
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CTA Banner ─── -->
+    <section class="py-24 bg-gray-950 relative overflow-hidden">
+      <!-- top accent line -->
+      <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-nova-600/40 to-transparent"></div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Header -->
+        <div class="text-center mb-14">
+          <span class="font-body font-bold text-nova-400 text-xs uppercase tracking-[0.15em]">Elegí tu producto</span>
+          <h2 class="font-heading font-extrabold text-white text-4xl lg:text-5xl mt-3 tracking-tight">Comprá ahora con envío gratis</h2>
+        </div>
+
+        <!-- Product showcase cards -->
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+
+          <!-- Cepillo -->
+          <a href="/cepillo" class="group relative rounded-lg overflow-hidden border border-white/10 hover:border-nova-500/40 transition-all duration-500 block">
+            <div class="relative overflow-hidden" style="aspect-ratio: 16/9;">
+              <img
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80"
+                alt="Cepillo quitapelos"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              <span class="inline-block bg-amber-400 text-gray-900 font-body font-bold text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full mb-3">Más vendido</span>
+              <h3 class="font-heading font-extrabold text-white text-2xl mb-3 leading-tight">Cepillo quitapelos<br/>reutilizable</h3>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="font-heading font-extrabold text-nova-400 text-2xl">$19.990</span>
+                  <span class="font-body text-gray-500 text-sm line-through ml-2">$34.990</span>
+                </div>
+                <div class="bg-nova-700 group-hover:bg-nova-600 text-white font-body font-bold text-sm px-5 py-2.5 rounded-none flex items-center gap-2 transition-colors">
+                  Comprar
+                  <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Juguete -->
+          <a href="/juguete" class="group relative rounded-lg overflow-hidden border border-white/10 hover:border-nova-500/40 transition-all duration-500 block">
+            <div class="relative overflow-hidden" style="aspect-ratio: 16/9;">
+              <img
+                src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=900&q=80"
+                alt="Juguete para mascotas"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              <span class="inline-block bg-nova-500 text-white font-body font-bold text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full mb-3">Nuevo</span>
+              <h3 class="font-heading font-extrabold text-white text-2xl mb-3 leading-tight">Juguete interactivo<br/>para mascotas</h3>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="font-heading font-extrabold text-nova-400 text-2xl">$24.990</span>
+                  <span class="font-body text-gray-500 text-sm line-through ml-2">$44.990</span>
+                </div>
+                <div class="bg-nova-700 group-hover:bg-nova-600 text-white font-body font-bold text-sm px-5 py-2.5 rounded-none flex items-center gap-2 transition-colors">
+                  Comprar
+                  <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- Trust signals -->
+        <div class="flex flex-wrap items-center justify-center gap-8 text-sm">
+          {[
+            { icon: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>`, label: 'Envío a todo el país' },
+            { icon: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>`, label: 'Pago 100% seguro' },
+            { icon: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>`, label: 'Garantía 30 días' },
+          ].map(t => (
+            <div class="flex items-center gap-2 text-gray-400">
+              <span class="text-nova-400" set:html={t.icon} />
+              <span class="font-body">{t.label}</span>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
