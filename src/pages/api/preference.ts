@@ -19,9 +19,6 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Guardar orden en DB (si falla, igual seguimos con MP)
     try {
-      console.log('ENV_CHECK url:', process.env.SUPABASE_URL?.slice(0,20) ?? 'undefined');
-      console.log('ENV_CHECK key length:', process.env.SUPABASE_SERVICE_KEY?.length ?? 0);
-      console.log('ENV_CHECK key end:', process.env.SUPABASE_SERVICE_KEY?.slice(-20) ?? 'undefined');
       const db = getDb();
       const { error: dbError } = await db.from('orders').insert({
         id:        orderId,
@@ -35,8 +32,7 @@ export const POST: APIRoute = async ({ request }) => {
         cp:        cp        ?? '',
         status:    'pending',
       });
-      if (dbError) console.error('DB insert error (non-fatal):', dbError.message, dbError.code);
-      else console.log('DB insert OK:', orderId);
+      if (dbError) console.error('DB insert error (non-fatal):', dbError.message);
     } catch (dbErr) {
       console.error('DB insert exception (non-fatal):', dbErr);
     }
