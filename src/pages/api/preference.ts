@@ -19,6 +19,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Guardar orden en DB (si falla, igual seguimos con MP)
     try {
+      console.log('ENV_CHECK url:', process.env.SUPABASE_URL?.slice(0,20) ?? 'undefined');
+      console.log('ENV_CHECK key:', process.env.SUPABASE_SERVICE_KEY?.slice(0,10) ?? 'undefined');
       const db = getDb();
       const { error: dbError } = await db.from('orders').insert({
         id:        orderId,
