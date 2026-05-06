@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { MercadoPagoConfig, Preference } from 'mercadopago';
-import { db } from '../../lib/supabase';
+import { getDb } from '../../lib/supabase';
 
 export const prerender = false;
 
@@ -17,22 +17,27 @@ export const POST: APIRoute = async ({ request }) => {
     const origin = new URL(request.url).origin;
     const orderId = `ORD-${Date.now()}`;
 
-    // Guardar orden en DB antes de ir a MP
-    await db.from('orders').insert({
-      id:       orderId,
-      product,
-      nombre:   nombre ?? '',
-      email:    email  ?? '',
-      telefono: telefono ?? '',
-      calle:    calle    ?? '',
-      ciudad:   ciudad   ?? '',
-      provincia: provincia ?? '',
-      cp:        cp        ?? '',
-      status:   'pending',
-    });
+    // Guardar orden en DB (si falla, igual seguimos con MP)
+    try {
+      const db = getDb();
+      await db.from('orders').insert({
+        id:        orderId,
+        product,
+        nombre:    nombre    ?? '',
+        email:     email     ?? '',
+        telefono:  telefono  ?? '',
+        calle:     calle     ?? '',
+        ciudad:    ciudad    ?? '',
+        provincia: provincia ?? '',
+        cp:        cp        ?? '',
+        status:    'pending',
+      });
+    } catch (dbErr) {
+      console.error('DB insert error (non-fatal):', dbErr);
+    }
 
     const client = new MercadoPagoConfig({
-      accessToken: import.meta.env.MP_ACCESS_TOKEN,
+      accessToken: import.meta.env.MP_ACCESS_TOKEN || process.env.MP_ACCESS_TOKEN || '',
     });
 
     const preference = new Preference(client);
@@ -41,10 +46,10 @@ export const POST: APIRoute = async ({ request }) => {
       body: {
         items: [
           {
-            id:         product,
-            title:      item.title,
-            quantity:   1,
-            unit_price: item.price,
+            id:          product,
+            title:       item.title,
+            quantity:    1,
+            unit_price:  item.price,
             currency_id: 'ARS',
           },
         ],
