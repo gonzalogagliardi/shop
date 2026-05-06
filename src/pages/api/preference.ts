@@ -20,7 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Guardar orden en DB (si falla, igual seguimos con MP)
     try {
       const db = getDb();
-      await db.from('orders').insert({
+      const { error: dbError } = await db.from('orders').insert({
         id:        orderId,
         product,
         nombre:    nombre    ?? '',
@@ -32,8 +32,10 @@ export const POST: APIRoute = async ({ request }) => {
         cp:        cp        ?? '',
         status:    'pending',
       });
+      if (dbError) console.error('DB insert error (non-fatal):', dbError.message, dbError.code);
+      else console.log('DB insert OK:', orderId);
     } catch (dbErr) {
-      console.error('DB insert error (non-fatal):', dbErr);
+      console.error('DB insert exception (non-fatal):', dbErr);
     }
 
     const client = new MercadoPagoConfig({
