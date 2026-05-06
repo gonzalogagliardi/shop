@@ -16,6 +16,7 @@
     "@supabase/supabase-js": "^2.105.3",
     "astro": "^4.15.9",
     "mercadopago": "^2.12.0",
+    "resend": "^6.12.2",
     "tailwindcss": "^3.4.10"
   }
 }
